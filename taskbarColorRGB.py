@@ -17,7 +17,7 @@ cv.createTrackbar(switch, 'image',0,1,nothing)
 while(1):
     cv.imshow('image',img)
     k = cv.waitKey(1) & 0xFF
-    if k == 27:
+    if k == ord('q'):
         break
     # get current positions of four trackbars
     r = cv.getTrackbarPos('R','image')

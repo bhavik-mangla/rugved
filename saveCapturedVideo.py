@@ -4,7 +4,7 @@ import os
 
 import cv2
 
-filename = '60fpsvideo62.mp4'
+filename = 'kk.mp4'
 
 frames_per_second = 25.0
 
@@ -46,6 +46,7 @@ def get_video_type(filename):
 
 cap = cv2.VideoCapture(0)
 
+
 out = cv2.VideoWriter(filename, get_video_type(filename), frames_per_second, get_dims(cap, my_res))
 
 while True:
@@ -55,10 +56,26 @@ while True:
         print("Can't receive frame (stream end?). Exiting ...")
         break
     frame = cv2.flip(frame, 1)
-    # write the flipped frame
-    out.write(frame)
 
-    cv2.imshow('frame',frame)
+    # # Converting to grayscale
+    gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
+    # # Blur 
+    # blur = cv2.GaussianBlur(gray, (3,3), cv2.BORDER_DEFAULT)
+    # # Edge Cascade
+    # canny = cv2.Canny(blur, 125, 175)
+    # # Dilating the image
+    # dilated = cv2.dilate(canny, (7,7), iterations=3)
+    blank = np.zeros(frame.shape, dtype='uint8')
+    ret, thresh = cv2.threshold(gray, 125, 255, cv2.THRESH_BINARY)
+    contours, hierarchies = cv2.findContours(thresh, cv2.RETR_LIST, cv2.CHAIN_APPROX_SIMPLE)
+    print(f'{len(contours)} contour(s) found!')
+
+    cv2.drawContours(blank, contours, -1, (0,0,255), 1)
+
+    # write the flipped frame
+    out.write(blank)
+
+    cv2.imshow('frame',blank)
     if cv2.waitKey(1) & 0xFF == ord('q'):
         break
 

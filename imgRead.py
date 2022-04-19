@@ -1,15 +1,18 @@
 
 import cv2 as cv
-import sys
-img = cv.imread("/Users/bhavikmangla/Downloads/peepo.jpg")
-img2 = cv.imread("/Users/bhavikmangla/Downloads/peepo2.jpg")
+img = cv.imread("imgs/peepo.jpg")
+img2 = cv.imread("imgs/peepo2.jpg")
 
 #takes path of pic and returns img matrix of pixels
 
 
-cv.imshow("Peepo", img)
-
-
-
-if cv.waitKey() == ord("s"):
-    cv.imshow("Peepo 2", img2)
+cv.imshow("Peepo 2", img2)
+while(1):
+    if cv.waitKey(20) & 0xFF == ord('s'):
+        print("hi")
+        cv.imshow("Peepo", img)
+    elif cv.waitKey(20) & 0xFF == ord('d'):
+        print("ufbw")
+        cv.imshow("Peepo2", img2)
+    elif cv.waitKey(20) & 0xFF == ord('q'):
+        break

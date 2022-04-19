@@ -1,6 +1,6 @@
 import numpy as np
 import cv2 as cv
-img = cv.imread("/Users/bhavikmangla/Downloads/messi.jpg")
+img = cv.imread("imgs/messi.jpeg")
 
 
 
@@ -17,7 +17,7 @@ img[389:493, 135:239] = ball
 while(1):
     cv.imshow('image',img)
     
-    if cv.waitKey(20) & 0xFF == 27:
+    if cv.waitKey(20) & 0xFF == ord('s'):
         break
 cv.destroyAllWindows()
 

@@ -1,8 +1,8 @@
 
 import numpy as np
 import cv2 as cv
-img = cv.imread("/Users/bhavikmangla/Downloads/messi.jpg")
-
+img = cv.imread("imgs/peepo.jpg")
+print(img.shape)
 
 
 def coords(event,x,y,flags,param):
